@@ -14,6 +14,12 @@ class Cliente(models.Model):
         null=True
     )
 
+    zona = models.ForeignKey(
+        'Zona',
+        on_delete=models.SET_NULL,
+        null=True
+    )
+
     def __str__(self):
         return self.nombre
 
@@ -75,7 +81,7 @@ class Credito(models.Model):
     n_cuotas = models.IntegerField() 
     fecha_prestamo = models.DateTimeField()
     fecha_limite = models.DateField()
-
+    porcentaje_seguro = models.DecimalField(max_digits=10, decimal_places=2)
     # Llaves Foráneas (FK) - Relaciones 
     #si borro una frecuencia no se me va a borrar el credito. 
     frecuencia = models.ForeignKey(FrecuenciaPago, on_delete=models.SET_NULL,
@@ -130,3 +136,14 @@ class Abono(models.Model):
     
     class Meta:
         db_table = 'Abono'
+
+
+class Zona(models.Model):
+    id_zona = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.nombre
+
+    class Meta:
+        db_table = 'Zona'
