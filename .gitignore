@@ -10,3 +10,5 @@ __pycache__/
 
 # base de datos local
 db.sqlite3
+
+CLAUDE.md
